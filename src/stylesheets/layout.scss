@@ -1,0 +1,51 @@
+//Header
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+//Navbar
+.navbar {
+  background-color: #003f5c !important;
+
+  .navbar-brand {
+    color: #fff !important;
+  }
+
+  .nav-link {
+    color: #fff !important;
+  }
+}
+
+//content
+.content {
+  padding-top: 80px;
+}
+button {
+  background-color: #003f5c;
+  box-shadow: none;
+  border: 1px solid white;
+  border-radius: 3px;
+  color: white;
+  padding: 5px;
+  font-weight: bold;
+  &:hover {
+    background-color: rgb(32, 179, 45);
+  }
+}
+
+//Footer
+.footer {
+  padding: 10px;
+  text-align: center;
+  background-color: #003f5c;
+  color: white;
+  //   for position footer in bottom
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import { collection, getDocs } from "firebase/firestore";
 import fireDB from "../fireConfig";
-import { useNavigate } from "react-router-dom";
-import { addDoc } from "firebase/firestore";
-import { fireProducts } from "../kidsshop-products";
+import { useNavigate } from "react-router-dom";//!for get key in productInfo
+/* import { addDoc } from "firebase/firestore";
+import { fireProducts } from "../kidsshop-products"; *///! for add data to firebase
 function HomePages() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ function HomePages() {
     try {
       const users = await getDocs(collection(fireDB, "products"));
       const productsArray = [];
-      users.forEach((doc) => {
+      users.forEach((doc,key) => {
         const obj = {
           id: doc.id,
           ...doc.data(),
@@ -40,7 +40,7 @@ function HomePages() {
   return (
     <Layout>
       <div className="container">
-        {products.map((product) => {
+        {products.map((product,key) => {
           return (
             <div className="col-md-4">
               <div className="m-2 p-2 product position-relative">
@@ -66,7 +66,7 @@ function HomePages() {
                   <div className="d-flex">
                     <button className="mx-2">Add to cart</button>
                     <button onClick={() => {
-                      navigate(`/productInfo/${product.id}`)
+                      navigate(`/productInfo/${product.id}`)//! firebase himself generates the keys
                     }}>View</button>
                   </div>
                 </div>

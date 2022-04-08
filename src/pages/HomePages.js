@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import fireDB from "../fireConfig";
+import { useNavigate } from "react-router-dom";
+import { addDoc } from "firebase/firestore";
 import { fireProducts } from "../kidsshop-products";
 function HomePages() {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     getData();
   }, []);
@@ -25,15 +28,15 @@ function HomePages() {
     }
   }
 
-  /*   function addDataProductstoFireBase() {
+    function addDataProductstoFireBase() {
     fireProducts.map(async (product) => {
       try {
-        await addDoc(collection(fireDB, "products"), JSON.stringify(product));
+        await addDoc(collection(fireDB, "products"), product);
       } catch (error) {
         console.log(error);
       }
     });
-  } */
+  }
   return (
     <Layout>
       <div className="container">
@@ -48,7 +51,11 @@ function HomePages() {
                       : product.title}
                   </p>
                   <div className="text-center">
-                    <img src={product.image} alt="" className="product-img" />
+                    <img
+                      src={product.image}
+                      alt="kidsshop"
+                      className="product-img"
+                    />
                   </div>
                 </div>
                 <div className="price">
@@ -58,13 +65,17 @@ function HomePages() {
                 <div className="product-actions">
                   <div className="d-flex">
                     <button className="mx-2">Add to cart</button>
-                    <button>View</button>
+                    <button onClick={() => {
+                      navigate(`/productInfo/${product.id}`)
+                    }}>View</button>
                   </div>
                 </div>
               </div>
             </div>
           );
         })}
+                  <button onClick={addDataProductstoFireBase}>Clicj</button>
+
       </div>
     </Layout>
   );

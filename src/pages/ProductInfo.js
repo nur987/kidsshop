@@ -38,6 +38,8 @@ const ProductInfo = () => {
               <p>{product.description}</p>
               <div className="d-flex justify-content-end my-3">
                 <button>Add to cart</button>
+
+                
               </div>
             </div>
           </div>

@@ -8,18 +8,17 @@ const ProductInfo = () => {
   const params = useParams();
   useEffect(() => {
     getData();
-  }, []);
+  });
   async function getData() {
     try {
       const producTemp = await getDoc(
         doc(fireDB, "products", params.productId)
       );
-      setProduct(producTemp.data());
+      setProduct(producTemp.data());//! get data product
     } catch (error) {
       console.log(error);
     }
   }
-  console.log(product);
   return (
     <Layout>
       {product && (
@@ -31,7 +30,7 @@ const ProductInfo = () => {
               </p>
               <img
                 src={product.image}
-                alt={`${product.category} image`}
+                alt={product.category}
                 className="product-info-img"
               />
               <hr />

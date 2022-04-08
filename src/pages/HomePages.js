@@ -28,7 +28,7 @@ function HomePages() {
     }
   }
 
-    function addDataProductstoFireBase() {
+/*     function addDataProductstoFireBase() {
     fireProducts.map(async (product) => {
       try {
         await addDoc(collection(fireDB, "products"), product);
@@ -36,7 +36,7 @@ function HomePages() {
         console.log(error);
       }
     });
-  }
+  } */
   return (
     <Layout>
       <div className="container">
@@ -74,8 +74,6 @@ function HomePages() {
             </div>
           );
         })}
-                  <button onClick={addDataProductstoFireBase}>Clicj</button>
-
       </div>
     </Layout>
   );

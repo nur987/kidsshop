@@ -9,14 +9,17 @@ import { fireProducts } from "../kidsshop-products"; */ //! for add data to fire
 function HomePages() {
   const [products, setProducts] = useState([]);
   const { cartItems } = useSelector((state) => state.cartReducer);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
     getData();
   }, []);
-  
+
   async function getData() {
     try {
+    setLoading(true);
+    
       const users = await getDocs(collection(fireDB, "products"));
       const productsArray = [];
       users.forEach((doc, key) => {
@@ -25,10 +28,12 @@ function HomePages() {
           ...doc.data(),
         };
         productsArray.push(obj);
+        setLoading(false);
       });
       setProducts(productsArray);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   }
 
@@ -50,7 +55,7 @@ function HomePages() {
     });
   } */
   return (
-    <Layout>
+    <Layout loading={loading}>
       <div className="container">
         {products.map((product, key) => {
           return (

@@ -1,15 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaBars,FaCartPlus } from "react-icons/fa";
+import { FaBars, FaCartPlus } from "react-icons/fa";
 import { useSelector } from "react-redux";
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
-
+  const { user } = JSON.parse(localStorage.getItem("currentUser"));
+  const loguot = () => {
+    localStorage.removeItem("currentUser");
+    window.location.reload();
+  };
   return (
     <div className="header">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="#">
+          <Link className="navbar-brand" to="/">
             Kids shop
           </Link>
           <button
@@ -29,8 +33,12 @@ const Header = () => {
             {/* ms-auto for put nav to left side */}
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="#">
-                  User
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="register"
+                >
+                  {user.email.substring(0, user.email.length - 10)}
                 </Link>
               </li>
               <li className="nav-item">
@@ -39,13 +47,13 @@ const Header = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="#">
+                <Link className="nav-link" to="/" onClick={loguot}>
                   Logout
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/cart">
-                  <FaCartPlus/> {cartItems.length}
+                  <FaCartPlus /> {cartItems.length}
                 </Link>
               </li>
               <li className="nav-item dropdown">

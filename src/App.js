@@ -1,29 +1,53 @@
 import "./App.css";
 import "./stylesheets/layout.scss"; //global css styles
 import "./stylesheets/products.scss"; //global css styles
+import "./stylesheets/authentication.scss";
 
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { Route, BrowserRouter, Routes, Navigate } from "react-router-dom";
 
 import HomePages from "./pages/HomePages";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProductInfo from "./pages/ProductInfo";
 import CartPage from "./pages/CartPage";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
       <BrowserRouter>
         <Routes>
-          <Route path="/" exact element={<HomePages />} />
-          <Route path="/login" exact element={<LoginPage />} />
-          <Route path="/register" exact element={<RegisterPage />} />
+          <Route
+            path="/"
+            exact
+            element={
+              <ProtectedRoutes>
+                <HomePages />
+              </ProtectedRoutes>
+            }
+          />
+
           <Route
             path="/productInfo/:productId"
             exact
-            element={<ProductInfo />}
+            element={
+              <ProtectedRoutes>
+                <ProductInfo />
+              </ProtectedRoutes>
+            }
           />
-          <Route path="/cart" exact element={<CartPage />} />
+          <Route
+            path="/cart"
+            exact
+            element={
+              <ProtectedRoutes>
+                <CartPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route path="/login" exact element={<LoginPage />} />
+          <Route path="/register" exact element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
     </div>
@@ -31,3 +55,11 @@ function App() {
 }
 
 export default App;
+
+export const ProtectedRoutes = ({ children }) => {
+  if (localStorage.getItem("currentUser")) {
+    return children;
+  } else {
+    return <Navigate to="/login" />;
+  }
+};

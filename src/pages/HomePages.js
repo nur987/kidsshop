@@ -14,6 +14,7 @@ function HomePages() {
   useEffect(() => {
     getData();
   }, []);
+  
   async function getData() {
     try {
       const users = await getDocs(collection(fireDB, "products"));
@@ -30,7 +31,7 @@ function HomePages() {
       console.log(error);
     }
   }
-  
+
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);

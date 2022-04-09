@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
+import { FaBars,FaCartPlus } from "react-icons/fa";
 import { useSelector } from "react-redux";
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
@@ -45,7 +45,7 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/cart">
-                  Cart {cartItems.length}
+                  <FaCartPlus/> {cartItems.length}
                 </Link>
               </li>
               <li className="nav-item dropdown">

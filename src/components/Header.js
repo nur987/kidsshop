@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import { useSelector } from "react-redux";
 const Header = () => {
+  const { cartItems } = useSelector((state) => state.cartReducer);
+
   return (
     <div className="header">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,7 +21,9 @@ const Header = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon">{<FaBars size={30} color="white"/>}</span>
+            <span className="navbar-toggler-icon">
+              {<FaBars size={30} color="white" />}
+            </span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             {/* ms-auto for put nav to left side */}
@@ -39,8 +44,8 @@ const Header = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="#">
-                  Cart
+                <Link className="nav-link" to="/cart">
+                  Cart {cartItems.length}
                 </Link>
               </li>
               <li className="nav-item dropdown">

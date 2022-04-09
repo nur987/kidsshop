@@ -37,11 +37,23 @@
       height: 200px;
       width: 150px;
     }
-   
   }
-  
 }
 //!productInfo
 .product-info-img {
   width: 70vh;
+}
+
+//CartPage
+.total-amount {
+  background-color: #d2d2d2;
+  padding: 10px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(60, 92, 197, 0.966);
+    color: aliceblue;
+  }
 }

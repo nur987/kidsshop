@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import { getDoc, doc } from "firebase/firestore";
-import fireDB from "../fireConfig";
+import fireDB from "../firebaseConfig";
 import { useParams } from "react-router-dom";
 const ProductInfo = () => {
   const [product, setProduct] = useState();

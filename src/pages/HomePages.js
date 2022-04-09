@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import { collection, getDocs } from "firebase/firestore";
-import fireDB from "../fireConfig";
+import fireDB from "../firebaseConfig";
 import { useNavigate } from "react-router-dom"; //!for get key in productInfo
 import { useDispatch, useSelector } from "react-redux";
 /* import { addDoc } from "firebase/firestore";
@@ -18,8 +18,8 @@ function HomePages() {
 
   async function getData() {
     try {
-    setLoading(true);
-    
+      setLoading(true);
+
       const users = await getDocs(collection(fireDB, "products"));
       const productsArray = [];
       users.forEach((doc, key) => {

@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { collection, addDoc, getDocs, setDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  setDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import fireDB from "../firebaseConfig";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { async } from "@firebase/util";
 
 const AdminPage = () => {
   const [products, setProducts] = useState([]);
@@ -84,6 +90,19 @@ const AdminPage = () => {
       setLoading(false);
     }
   };
+
+  const deleteProduct = async (item) => {
+    try {
+      setLoading(true);
+      await deleteDoc(doc(fireDB, "products", item.id));
+      toast.success("Product deleted successfully");
+      getData(); //!for update live
+    } catch (error) {
+      toast.success("Product delete failed");
+      setLoading(false);
+    }
+  };
+
   return (
     <Layout loading={loading}>
       <div className="d-flex justify-content-between">
@@ -116,7 +135,10 @@ const AdminPage = () => {
                 <td>{item.category}</td>
                 <td>{item.price} $</td>
                 <td>
-                  <FaTrash className="text-primary" />
+                  <FaTrash
+                    className="text-primary"
+                    onClick={() => deleteProduct(item)}
+                  />
 
                   <FaEdit
                     onClick={() => editHandler(item)}
@@ -172,6 +194,7 @@ const AdminPage = () => {
                 setProduct({ ...product, category: e.target.value });
               }}
             />
+            
             <hr />
             <Link to="/login"> Click herer to Login</Link>
           </div>

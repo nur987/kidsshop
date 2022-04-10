@@ -16,7 +16,7 @@
 
     .product-actions {
       display: flex;
-      width: auto; 
+      width: auto;
       height: auto;
       flex-direction: column;
       justify-content: center;
@@ -57,5 +57,14 @@
   &:hover {
     background-color: rgba(60, 92, 197, 0.966);
     color: aliceblue;
+  }
+}
+
+.p {
+  margin: 20px;
+
+  .order {
+    background-color: aliceblue;
+    border-bottom: 1px solid black;
   }
 }

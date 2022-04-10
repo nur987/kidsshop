@@ -5,7 +5,7 @@ import fireDB from "../firebaseConfig";
 import { useNavigate } from "react-router-dom"; //!for get key in productInfo
 import { useDispatch, useSelector } from "react-redux";
 /* import { addDoc } from "firebase/firestore";
-import { fireProducts } from "../kidsshop-products"; */ //! for add data to firebase
+import { fireProducts } from "../kidsshop-products"; //! for add data to firebase */
 function HomePages() {
   const [products, setProducts] = useState([]);
   const { cartItems } = useSelector((state) => state.cartReducer);
@@ -47,7 +47,7 @@ function HomePages() {
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
 
-  /*     function addDataProductstoFireBase() {
+  /*   function addDataProductstoFireBase() {
     fireProducts.map(async (product) => {
       try {
         await addDoc(collection(fireDB, "products"), product);
@@ -133,6 +133,7 @@ function HomePages() {
               );
             })}
         </div>
+        {/*    <button onClick={addDataProductstoFireBase}></button>//for get data from firebase */}
       </div>
     </Layout>
   );

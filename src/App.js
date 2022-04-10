@@ -12,6 +12,8 @@ import ProductInfo from "./pages/ProductInfo";
 import CartPage from "./pages/CartPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import OrdersPage from "./pages/OrdersPage";
+import AdminPage from "./pages/AdminPage";
 function App() {
   return (
     <div className="App">
@@ -48,6 +50,8 @@ function App() {
           />
           <Route path="/login" exact element={<LoginPage />} />
           <Route path="/register" exact element={<RegisterPage />} />
+          <Route path="/orders" exact element={<OrdersPage />} />
+          <Route path="/admin" exact element={<AdminPage />} />
         </Routes>
       </BrowserRouter>
     </div>

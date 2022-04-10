@@ -109,7 +109,7 @@ function HomePages() {
                     </div>
                     <div className="price">
                       <span>price: {Number.parseInt(product.price)}$</span>
-                      <span>{product.rating.rate}</span>
+                      <span>{product.rate}</span>
                     </div>
                     <div className="product-actions">
                       <div className="d-flex">

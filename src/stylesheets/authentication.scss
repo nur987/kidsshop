@@ -14,10 +14,6 @@
     margin-top: 15px !important;
     box-shadow: none !important;
   }
-  input {
-    margin-top: 15px;
-  }
-
   .register-form {
     background-color: white;
     padding: 20px;
@@ -80,4 +76,8 @@
     top: 0;
     background-color: #003f5c;
   }
+}
+
+input,textarea {
+  margin-top: 15px;
 }

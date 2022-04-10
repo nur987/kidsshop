@@ -60,3 +60,12 @@ button {
 a {
   text-decoration: none;
 }
+
+input,
+select {
+  height: 35px !important;
+}
+
+.form-control {
+  margin: 5px;
+}

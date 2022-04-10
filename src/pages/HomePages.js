@@ -59,7 +59,7 @@ function HomePages() {
   return (
     <Layout loading={loading}>
       <div className="container">
-        <div className="d-flex w-50">
+        <div className="d-flex w-50 align-items-baseline">
           <input
             value={searchKey}
             onChange={(e) => {
@@ -91,7 +91,7 @@ function HomePages() {
             .filter((obj) => obj.category.toLowerCase().includes(filterType))
             .map((product) => {
               return (
-                <div className="col-md-4">
+                <div className="col">
                   <div className="m-2 p-2 product position-relative">
                     <div className="product-content">
                       <p className="text-center">

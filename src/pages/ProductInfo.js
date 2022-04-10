@@ -3,9 +3,12 @@ import Layout from "../components/Layout";
 import { getDoc, doc } from "firebase/firestore";
 import fireDB from "../firebaseConfig";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 const ProductInfo = () => {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+
   const params = useParams();
   useEffect(() => {
     getData();
@@ -23,6 +26,10 @@ const ProductInfo = () => {
       setLoading(false);
     }
   }
+
+  const addToCart = (product) => {
+    dispatch({ type: "ADD_TO_CART", payload: product });
+  };
   return (
     <Layout loading={loading}>
       <div className="container">
@@ -41,7 +48,9 @@ const ProductInfo = () => {
                 <hr />
                 <p>{product.description}</p>
                 <div className="d-flex justify-content-end my-3">
-                  <button>Add to cart</button>
+                  <button className="mx-2" onClick={() => addToCart(product)}>
+                    Add to cart
+                  </button>
                 </div>
               </div>
             )}

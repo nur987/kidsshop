@@ -10,6 +10,8 @@ function HomePages() {
   const [products, setProducts] = useState([]);
   const { cartItems } = useSelector((state) => state.cartReducer);
   const [loading, setLoading] = useState(false);
+  const [searchKey, setSearchKey] = useState("");
+  const [filterType, setFilterType] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -57,46 +59,80 @@ function HomePages() {
   return (
     <Layout loading={loading}>
       <div className="container">
-        {products.map((product, key) => {
-          return (
-            <div className="col-md-4">
-              <div className="m-2 p-2 product position-relative">
-                <div className="product-content">
-                  <p className="text-center">
-                    {product.title.length > 30
-                      ? product.title.slice(0, 32)
-                      : product.title}
-                  </p>
-                  <div className="text-center">
-                    <img
-                      src={product.image}
-                      alt="kidsshop"
-                      className="product-img"
-                    />
+        <div className="d-flex w-50">
+          <input
+            value={searchKey}
+            onChange={(e) => {
+              setSearchKey(e.target.value);
+            }}
+            type="text"
+            className="form-control"
+            placeholder="Search items"
+          />
+          <select
+            name=""
+            id=""
+            className="form-control"
+            value={filterType}
+            onChange={(e) => {
+              setFilterType(e.target.value);
+            }}
+          >
+            <option value="">All</option>
+            <option value="electronics">Electronics</option>
+            <option value="women's clothing">Women's clothing</option>
+            <option value="men's clothing">Men's clothings</option>
+            <option value="jewelery">Jewelery</option>
+          </select>
+        </div>
+        <div className="row">
+          {products
+            .filter((obj) => obj.title.toLowerCase().includes(searchKey))
+            .filter((obj) => obj.category.toLowerCase().includes(filterType))
+            .map((product) => {
+              return (
+                <div className="col-md-4">
+                  <div className="m-2 p-2 product position-relative">
+                    <div className="product-content">
+                      <p className="text-center">
+                        {product.title.length > 30
+                          ? product.title.slice(0, 32)
+                          : product.title}
+                      </p>
+                      <div className="text-center">
+                        <img
+                          src={product.image}
+                          alt="kidsshop"
+                          className="product-img"
+                        />
+                      </div>
+                    </div>
+                    <div className="price">
+                      <span>price: {Number.parseInt(product.price)}$</span>
+                      <span>{product.rating.rate}</span>
+                    </div>
+                    <div className="product-actions">
+                      <div className="d-flex">
+                        <button
+                          className="mx-2"
+                          onClick={() => addToCart(product)}
+                        >
+                          Add to cart
+                        </button>
+                        <button
+                          onClick={() => {
+                            navigate(`/productInfo/${product.id}`); //! firebase himself generates the keys
+                          }}
+                        >
+                          View
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="price">
-                  <span>price: {Number.parseInt(product.price)}$</span>
-                  <span>{product.rating.rate}</span>
-                </div>
-                <div className="product-actions">
-                  <div className="d-flex">
-                    <button className="mx-2" onClick={() => addToCart(product)}>
-                      Add to cart
-                    </button>
-                    <button
-                      onClick={() => {
-                        navigate(`/productInfo/${product.id}`); //! firebase himself generates the keys
-                      }}
-                    >
-                      View
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+              );
+            })}
+        </div>
       </div>
     </Layout>
   );

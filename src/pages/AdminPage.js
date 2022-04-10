@@ -11,17 +11,20 @@ import {
 import fireDB from "../firebaseConfig";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 const AdminPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState({
+    image: "",
     name: "",
-    price: 0,
-    imageURL: "",
     category: "",
+    price: 0,
+    description: "",
+    rate: 0,
+    count: 0,
   });
   const [show, setShow] = useState(false);
   const [add, setAdd] = useState(false);
@@ -116,6 +119,9 @@ const AdminPage = () => {
             <th>Name</th>
             <th>Category</th>
             <th>Price</th>
+            <th>Description</th>
+            <th>Rate</th>
+            <th>Count</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -134,15 +140,20 @@ const AdminPage = () => {
                 <td>{item.title}</td>
                 <td>{item.category}</td>
                 <td>{item.price} $</td>
-                <td>
+                <td>{item.description}</td>
+                <td>{item.rate}</td>
+                <td>{item.count}</td>
+                <td className="d-flex justify-content-between">
                   <FaTrash
-                    className="text-primary"
+                    className="del text-danger"
                     onClick={() => deleteProduct(item)}
+                    size={25}
                   />
 
                   <FaEdit
                     onClick={() => editHandler(item)}
-                    className="text-danger"
+                    className="text-primary"
+                    size={25}
                   />
                 </td>
               </tr>
@@ -161,15 +172,6 @@ const AdminPage = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Name..."
-              value={product.title}
-              onChange={(e) => {
-                setProduct({ ...product, title: e.target.value });
-              }}
-            />
-            <input
-              type="text"
-              className="form-control"
               placeholder="Image url..."
               value={product.image}
               onChange={(e) => {
@@ -177,12 +179,12 @@ const AdminPage = () => {
               }}
             />
             <input
-              type="number"
+              type="text"
               className="form-control"
-              placeholder="Price..."
-              value={product.price}
+              placeholder="Name..."
+              value={product.title}
               onChange={(e) => {
-                setProduct({ ...product, price: e.target.value });
+                setProduct({ ...product, title: e.target.value });
               }}
             />
             <input
@@ -194,17 +196,53 @@ const AdminPage = () => {
                 setProduct({ ...product, category: e.target.value });
               }}
             />
-            
+            <input
+              type="number"
+              className="form-control"
+              placeholder="Price..."
+              value={product.price}
+              onChange={(e) => {
+                setProduct({ ...product, price: e.target.value });
+              }}
+            />
+
+            <input
+              type="text"
+              className="form-control"
+              placeholder="description..."
+              value={product.description}
+              onChange={(e) => {
+                setProduct({ ...product, description: e.target.value });
+              }}
+            />
+            <input
+              type="number"
+              className="form-control"
+              placeholder="Rate..."
+              value={product.rate}
+              onChange={(e) => {
+                setProduct({ ...product, rate: e.target.value });
+              }}
+            />
+            <input
+              type="number"
+              className="form-control"
+              placeholder="Count..."
+              value={product.count}
+              onChange={(e) => {
+                setProduct({ ...product, count: e.target.value });
+              }}
+            />
             <hr />
             <Link to="/login"> Click herer to Login</Link>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <button>Close</button>
+          <Button onClick={handleClose}>Close</Button>
           {add ? (
-            <button onClick={addProduct}>Save</button>
+            <Button onClick={addProduct}>Save</Button>
           ) : (
-            <button onClick={updateProduct}>Save</button>
+            <Button onClick={updateProduct}>Save</Button>
           )}
         </Modal.Footer>
       </Modal>

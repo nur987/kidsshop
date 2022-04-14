@@ -15,7 +15,7 @@ import { Button, Modal, Tabs, Tab } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 const AdminPage = () => {
-  const userId = JSON.parse(localStorage.getItem("currentUser")).user.uid;
+  // const userId = JSON.parse(localStorage.getItem("currentUser")).user.uid;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState({

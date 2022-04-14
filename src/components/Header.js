@@ -13,7 +13,7 @@ const Header = () => {
     <div className="header">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <Link className="navbar-brand text-black-50" to="/">
+          <Link className="navbar-brand text-black" to="/">
             KidsShop
           </Link>
           <button

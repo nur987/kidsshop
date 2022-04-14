@@ -37,19 +37,6 @@ button {
   }
 }
 
-//Footer
-.footer {
-  padding: 10px;
-  text-align: center;
-  background-color: #003f5c;
-  color: white;
-  //   for position footer in bottom
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
 .loader {
   position: absolute;
   top: 50%;
@@ -80,4 +67,20 @@ select {
 }
 .nav-item:hover {
   background-color: rgb(64, 132, 134);
+}
+
+@media screen and (min-width: 1000px) {
+  .left {
+    position: absolute;
+    right: 0;
+  }
+}
+
+//Footer
+.footer {
+  width: 100%;
+  text-align: center;
+  background-color: #003f5c;
+  color: white;
+  padding: 5px;
 }

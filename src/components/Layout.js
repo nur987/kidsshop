@@ -1,15 +1,16 @@
-import React from "react";
-// import Footer from "./Footer";
 import Header from "./Header";
 import Loader from "./Loader";
+import Footer from "./Footer";
+
+import CarouselSlider from "../components/CarouselSlider";
 
 const Layout = (props) => {
   return (
-    <div>
+    <div className="container">
       {props.loading && <Loader />}
       <Header />
       <div className="content">{props.children}</div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

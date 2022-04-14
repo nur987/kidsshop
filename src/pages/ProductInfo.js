@@ -43,7 +43,7 @@ const ProductInfo = () => {
                 <img
                   src={product.image}
                   alt={product.category}
-                  className="product-info-img"
+                  className="product-info-img w-25"
                 />
                 <hr />
                 <p>{product.description}</p>

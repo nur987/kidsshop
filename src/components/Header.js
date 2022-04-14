@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaCartPlus } from "react-icons/fa";
+import { FaBars, FaCartPlus,FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
@@ -38,7 +38,7 @@ const Header = () => {
                   aria-current="page"
                   to="register"
                 >
-                  {user.email.substring(0, user.email.length - 10)}
+                 <FaUser/> {user.email.substring(0, user.email.length - 10)}
                 </Link>
               </li>
               <li className="nav-item">

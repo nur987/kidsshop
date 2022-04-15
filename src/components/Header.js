@@ -102,7 +102,7 @@ const Header = () => {
         </Navbar>
       </div>
       <div>
-        <CarouselSlider />
+{/* //Slider */}
       </div>
     </div>
   );

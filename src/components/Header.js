@@ -2,7 +2,7 @@ import { Nav, Container, Navbar, NavDropdown, Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaBars, FaCartPlus, FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import CarouselSlider from "./CarouselSlider";
+// import CarouselSlider from "./CarouselSlider";
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
   const { user } = JSON.parse(localStorage.getItem("currentUser"));
